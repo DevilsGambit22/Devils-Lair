@@ -73,7 +73,9 @@ body{
   position:relative;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 .hero{
   padding:22px 18px 20px;
@@ -125,7 +127,9 @@ body{
   position:relative;
 }
 
-/* TOP STATS */
+/* =========================
+   TOP STATS
+========================= */
 
 .stats{
   display:grid;
@@ -164,7 +168,9 @@ body{
   color:var(--muted);
 }
 
-/* SECTIONS */
+/* =========================
+   SECTIONS
+========================= */
 
 .section{
   padding:18px 12px 0;
@@ -183,7 +189,9 @@ body{
   font-weight:950;
 }
 
-/* BOARDS */
+/* =========================
+   BOARDS
+========================= */
 
 .board{
   position:relative;
@@ -219,6 +227,10 @@ body{
   border-radius:15px;
   pointer-events:none;
   z-index:0;
+
+  transition:
+    border-color .28s ease,
+    box-shadow .28s ease;
 }
 
 .board:hover{
@@ -235,7 +247,19 @@ body{
   z-index:20;
 }
 
-/* FRESH SOULS CHARACTER */
+.board:hover::after{
+  border-color:rgba(255,80,60,.12);
+  box-shadow:
+    inset 0 0 15px rgba(255,50,35,.05);
+}
+
+/* =========================
+   FRESH SOULS CHARACTER
+
+   Character stays OUTSIDE.
+   Only his hands reach the
+   right-hand board border.
+========================= */
 
 .around{
   position:absolute;
@@ -251,16 +275,18 @@ body{
 
 .around.perch-right{
   width:126px;
+
   left:auto;
   right:-88px;
 
-  /* moved slightly upward */
-  top:6px;
+  top:-4px;
 
   transform:scaleX(-1);
 }
 
-/* DAILY MATCH CHAMPS CHARACTER */
+/* =========================
+   DAILY MATCH CHAMPS CHARACTER
+========================= */
 
 .pointing{
   position:absolute;
@@ -276,7 +302,9 @@ body{
     );
 }
 
-/* DAILY BATTLE BOARD */
+/* =========================
+   DAILY BATTLE BOARD
+========================= */
 
 .match{
   padding:15px;
@@ -321,7 +349,40 @@ body{
   font-weight:850;
 }
 
-/* MEMBER ROWS */
+.btn{
+  display:inline-block;
+  margin-top:11px;
+  padding:8px 12px;
+  border-radius:11px;
+  background:
+    linear-gradient(
+      #ff4d28,
+      #a70f0b
+    );
+  color:#fff;
+  text-decoration:none;
+  font-size:.69rem;
+  font-weight:950;
+  box-shadow:0 5px 0 #6f1115;
+
+  transition:
+    transform .2s ease,
+    filter .2s ease,
+    box-shadow .2s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.12);
+
+  box-shadow:
+    0 7px 0 #6f1115,
+    0 0 18px rgba(255,65,40,.28);
+}
+
+/* =========================
+   MEMBER ROWS
+========================= */
 
 .rows{
   position:relative;
@@ -375,14 +436,18 @@ body{
   color:var(--gold);
 }
 
-/* FRESH SOULS */
+/* =========================
+   FRESH SOULS
+========================= */
 
 .fresh{
   padding:15px;
   min-height:270px;
 }
 
-/* INFERNAL ASCENT */
+/* =========================
+   INFERNAL ASCENT
+========================= */
 
 .climbers{
   padding:18px 8px 12px;
@@ -405,19 +470,31 @@ body{
   background:#160706;
   border:1px solid rgba(255,255,255,.07);
   min-width:0;
+
+  transition:
+    transform .2s ease,
+    border-color .2s ease;
+}
+
+.climber:hover{
+  transform:translateY(-3px);
+  border-color:rgba(225,43,32,.35);
 }
 
 .climber.first{
   padding-top:19px;
-  box-shadow:inset 0 -4px 0 var(--gold);
+  box-shadow:
+    inset 0 -4px 0 var(--gold);
 }
 
 .climber.second{
-  box-shadow:inset 0 -4px 0 #a9b0b7;
+  box-shadow:
+    inset 0 -4px 0 #a9b0b7;
 }
 
 .climber.third{
-  box-shadow:inset 0 -4px 0 #b77a49;
+  box-shadow:
+    inset 0 -4px 0 #b77a49;
 }
 
 .place{
@@ -467,7 +544,9 @@ body{
   margin-top:9px;
 }
 
-/* DAILY MATCH CHAMPS */
+/* =========================
+   DAILY MATCH CHAMPS
+========================= */
 
 .champs{
   padding-top:34px;
@@ -521,7 +600,9 @@ body{
   color:var(--gold);
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 .footer{
   text-align:center;
@@ -534,7 +615,9 @@ body{
   color:var(--gold);
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:340px){
 
@@ -547,10 +630,7 @@ body{
     width:116px;
     left:auto;
     right:-80px;
-
-    /* moved slightly upward */
-    top:8px;
-
+    top:-2px;
     transform:scaleX(-1);
   }
 
@@ -576,7 +656,9 @@ body{
   }
 }
 
-/* TOUCH DEVICES */
+/* =========================
+   TOUCH DEVICES
+========================= */
 
 @media(hover:none){
 
@@ -588,8 +670,33 @@ body{
       inset 0 0 0 1px rgba(255,130,70,.08),
       var(--board-glow);
   }
+
+  .stat:hover{
+    transform:none;
+  }
+
+  .climber:hover{
+    transform:none;
+  }
 }
 
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  .board,
+  .stat,
+  .climber,
+  .btn{
+    transition:none;
+  }
+
+  .board:hover{
+    transform:none;
+  }
+}
 </style>
 </head>
 
@@ -597,6 +704,8 @@ body{
 
 <div class="wrap" id="top">
 <main class="shell">
+
+<!-- HEADER -->
 
 <header class="hero">
 
@@ -613,6 +722,8 @@ body{
   </div>
 
 </header>
+
+<!-- STATS -->
 
 <div class="stats">
 
@@ -632,6 +743,8 @@ body{
   </div>
 
 </div>
+
+<!-- DAILY BATTLE BOARD -->
 
 <section class="section">
 
@@ -673,6 +786,8 @@ body{
 
 </section>
 
+<!-- FRESH SOULS -->
+
 <section class="section">
 
   <div class="head">
@@ -713,6 +828,8 @@ body{
 
 </section>
 
+<!-- INFERNAL ASCENT -->
+
 <section class="section">
 
   <div class="head">
@@ -727,27 +844,75 @@ body{
     >
 
       <div class="climber second">
-        <span class="place">2</span>
-        <div class="avatar ghost">♟</div>
-        <b>Awaiting history</b>
-        <div class="gain">+—</div>
-        <small>Daily</small>
+
+        <span class="place">
+          2
+        </span>
+
+        <div class="avatar ghost">
+          ♟
+        </div>
+
+        <b>
+          Awaiting history
+        </b>
+
+        <div class="gain">
+          +—
+        </div>
+
+        <small>
+          Daily
+        </small>
+
       </div>
 
       <div class="climber first">
-        <span class="place">1</span>
-        <div class="avatar ghost">♛</div>
-        <b>Top climber</b>
-        <div class="gain">+—</div>
-        <small>Daily</small>
+
+        <span class="place">
+          1
+        </span>
+
+        <div class="avatar ghost">
+          ♛
+        </div>
+
+        <b>
+          Top climber
+        </b>
+
+        <div class="gain">
+          +—
+        </div>
+
+        <small>
+          Daily
+        </small>
+
       </div>
 
       <div class="climber third">
-        <span class="place">3</span>
-        <div class="avatar ghost">♟</div>
-        <b>Awaiting history</b>
-        <div class="gain">+—</div>
-        <small>Daily</small>
+
+        <span class="place">
+          3
+        </span>
+
+        <div class="avatar ghost">
+          ♟
+        </div>
+
+        <b>
+          Awaiting history
+        </b>
+
+        <div class="gain">
+          +—
+        </div>
+
+        <small>
+          Daily
+        </small>
+
       </div>
 
     </div>
@@ -762,6 +927,8 @@ body{
   </div>
 
 </section>
+
+<!-- DAILY MATCH CHAMPS -->
 
 <section class="section">
 
@@ -783,39 +950,66 @@ body{
     >
 
       <div class="champ">
-        <span class="rank">1</span>
-        <div class="avatar ghost">♟</div>
+
+        <span class="rank">
+          1
+        </span>
+
+        <div class="avatar ghost">
+          ♟
+        </div>
 
         <div>
           <b>Awaiting results</b>
           <small>—</small>
         </div>
 
-        <strong>— pts</strong>
+        <strong>
+          — pts
+        </strong>
+
       </div>
 
       <div class="champ">
-        <span class="rank">2</span>
-        <div class="avatar ghost">♟</div>
+
+        <span class="rank">
+          2
+        </span>
+
+        <div class="avatar ghost">
+          ♟
+        </div>
 
         <div>
           <b>Awaiting results</b>
           <small>—</small>
         </div>
 
-        <strong>— pts</strong>
+        <strong>
+          — pts
+        </strong>
+
       </div>
 
       <div class="champ">
-        <span class="rank">3</span>
-        <div class="avatar ghost">♟</div>
+
+        <span class="rank">
+          3
+        </span>
+
+        <div class="avatar ghost">
+          ♟
+        </div>
 
         <div>
           <b>Awaiting results</b>
           <small>—</small>
         </div>
 
-        <strong>— pts</strong>
+        <strong>
+          — pts
+        </strong>
+
       </div>
 
     </div>
@@ -830,6 +1024,8 @@ body{
   </div>
 
 </section>
+
+<!-- FOOTER -->
 
 <footer class="footer">
 
@@ -847,6 +1043,10 @@ body{
 </div>
 
 <script>
+
+/* =========================
+   CONFIG
+========================= */
 
 const API =
   'https://api.chess.com/pub';
@@ -880,6 +1080,10 @@ const fallback =
     '<text x="48" y="63" text-anchor="middle" font-size="46" fill="#9aa5ae">♟</text>' +
     '</svg>'
   );
+
+/* =========================
+   FETCH
+========================= */
 
 async function get(url){
 
@@ -915,6 +1119,10 @@ async function get(url){
     clearTimeout(timeout);
   }
 }
+
+/* =========================
+   PLAYER DATA
+========================= */
 
 async function stats(username){
 
@@ -956,6 +1164,10 @@ function daily(statsData){
       ?? null
   );
 }
+
+/* =========================
+   FRESH SOULS
+========================= */
 
 async function loadMembers(){
 
@@ -1152,6 +1364,10 @@ async function loadMembers(){
   }
 }
 
+/* =========================
+   DAILY BATTLE BOARD
+========================= */
+
 async function loadMatches(){
 
   try{
@@ -1327,6 +1543,10 @@ async function loadMatches(){
       `;
   }
 }
+
+/* =========================
+   INFERNAL ASCENT
+========================= */
 
 async function loadClimbers(){
 
@@ -1525,6 +1745,10 @@ async function loadClimbers(){
   }
 }
 
+/* =========================
+   DAILY MATCH CHAMPS
+========================= */
+
 async function loadChamps(){
 
   try{
@@ -1670,6 +1894,10 @@ async function loadChamps(){
 
   }
 }
+
+/* =========================
+   INITIALIZE
+========================= */
 
 $('#updated').textContent =
 
