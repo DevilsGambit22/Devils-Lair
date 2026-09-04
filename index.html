@@ -1,10 +1,265 @@
-/* ==============================
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090b0f">
+
+<title>Devil's Lair | Daily Chess</title>
+
+<style>
+:root{
+  --bg:#070202;
+  --card:#180706;
+  --card2:#250b08;
+  --gold:#d9a441;
+  --red:#e12b20;
+  --red-bright:#ff3b2e;
+  --text:#fff4e8;
+  --muted:#c9a99c;
+  --green:#79c45a;
+  --line:rgba(225,57,42,.88);
+
+  --board-glow:
+    0 0 10px rgba(225,43,32,.16),
+    0 0 22px rgba(225,43,32,.10),
+    0 14px 30px rgba(0,0,0,.58);
+
+  --board-glow-hover:
+    0 0 12px rgba(255,59,46,.50),
+    0 0 28px rgba(225,43,32,.32),
+    0 0 46px rgba(225,43,32,.16),
+    0 20px 40px rgba(0,0,0,.72);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  background:#050101;
+}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(
+      circle at 50% 0,
+      #260806 0,
+      #0c0303 35%,
+      #050101 78%
+    );
+  color:var(--text);
+  font-family:
+    ui-rounded,
+    "SF Pro Rounded",
+    "Segoe UI",
+    Arial,
+    sans-serif;
+}
+
+.wrap{
+  width:min(100%,370px);
+  margin:0 auto;
+  padding:14px 10px 42px;
+}
+
+.shell{
+  background:transparent;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+  overflow:visible;
+  position:relative;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.hero{
+  padding:22px 18px 20px;
+  text-align:center;
+  border-bottom:1px solid rgba(225,43,32,.32);
+  position:relative;
+  overflow:hidden;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(255,72,31,.28),
+      transparent 55%
+    );
+  pointer-events:none;
+}
+
+.brand{
+  font-size:1.48rem;
+  font-weight:950;
+  letter-spacing:.02em;
+  position:relative;
+}
+
+.brand span{
+  color:var(--red);
+}
+
+.tag{
+  font-size:.71rem;
+  letter-spacing:.13em;
+  color:var(--gold);
+  font-weight:900;
+  margin-top:5px;
+  position:relative;
+}
+
+.sub{
+  margin:8px auto 0;
+  max-width:280px;
+  color:var(--muted);
+  font-size:.78rem;
+  line-height:1.4;
+  position:relative;
+}
+
+/* =========================
+   TOP STATS
+========================= */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  padding:12px;
+}
+
+.stat{
+  background:#160706;
+  border:1px solid rgba(217,164,65,.14);
+  border-radius:14px;
+  padding:9px 5px;
+  text-align:center;
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
+
+.stat:hover{
+  transform:translateY(-3px);
+  border-color:rgba(255,59,46,.55);
+  box-shadow:
+    0 0 13px rgba(225,43,32,.22),
+    0 8px 18px rgba(0,0,0,.42);
+}
+
+.stat b{
+  display:block;
+  font-size:1rem;
+}
+
+.stat small{
+  font-size:.59rem;
+  color:var(--muted);
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section{
+  padding:18px 12px 0;
+  position:relative;
+}
+
+.head{
+  padding:0 2px 10px;
+  position:relative;
+  z-index:8;
+}
+
+.head h2{
+  margin:0;
+  font-size:1.08rem;
+  font-weight:950;
+}
+
+/* =========================
+   BOARDS
+========================= */
+
+.board{
+  position:relative;
+  background:
+    linear-gradient(
+      180deg,
+      var(--card2),
+      var(--card)
+    );
+  border:2px solid var(--line);
+  border-radius:22px;
+  padding:15px;
+  overflow:visible;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255,130,70,.08),
+    var(--board-glow);
+
+  transition:
+    transform .28s cubic-bezier(.2,.8,.2,1),
+    box-shadow .28s ease,
+    border-color .28s ease;
+
+  transform-origin:center;
+  will-change:transform;
+}
+
+.board::after{
+  content:"";
+  position:absolute;
+  inset:7px;
+  border:1px solid rgba(255,255,255,.035);
+  border-radius:15px;
+  pointer-events:none;
+  z-index:0;
+
+  transition:
+    border-color .28s ease,
+    box-shadow .28s ease;
+}
+
+.board:hover{
+  transform:
+    translateY(-7px)
+    scale(1.018);
+
+  border-color:rgba(255,74,55,.98);
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255,110,80,.16),
+    var(--board-glow-hover);
+
+  z-index:20;
+}
+
+.board:hover::after{
+  border-color:rgba(255,80,60,.12);
+  box-shadow:
+    inset 0 0 15px rgba(255,50,35,.05);
+}
+
+/* =========================
    FRESH SOULS CHARACTER
 
-   OUTSIDE THE BOARD:
-   only the hands overlap/touch
-   the right border.
-============================== */
+   Character stays OUTSIDE.
+   Only his hands reach the
+   right-hand board border.
+========================= */
 
 .around{
   position:absolute;
@@ -19,23 +274,1655 @@
 }
 
 .around.perch-right{
-  width:128px;
+  width:126px;
 
-  /*
-    Push almost the entire mascot
-    OUTSIDE the board.
-  */
-  right:-94px;
   left:auto;
+  right:-88px;
 
-  /*
-    Places his hands around the
-    upper-right portion of the board.
-  */
   top:18px;
 
-  /*
-    Mirror so he faces inward.
-  */
   transform:scaleX(-1);
 }
+
+/* =========================
+   DAILY MATCH CHAMPS CHARACTER
+========================= */
+
+.pointing{
+  position:absolute;
+  width:150px;
+  right:-20px;
+  top:-86px;
+  z-index:10;
+  pointer-events:none;
+
+  filter:
+    drop-shadow(
+      0 8px 8px rgba(0,0,0,.75)
+    );
+}
+
+/* =========================
+   DAILY BATTLE BOARD
+========================= */
+
+.match{
+  padding:15px;
+  min-height:190px;
+}
+
+.match-label{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:999px;
+  background:rgba(229,57,53,.13);
+  border:1px solid rgba(229,57,53,.4);
+  color:#ff8c86;
+  font-size:.62rem;
+  font-weight:950;
+}
+
+.match h3{
+  font-size:1rem;
+  margin:13px 0 5px;
+}
+
+.meta{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+}
+
+.chip{
+  padding:4px 7px;
+  border-radius:999px;
+  background:#140706;
+  border:1px solid rgba(255,255,255,.08);
+  font-size:.61rem;
+  color:#d5dde4;
+}
+
+.match-status{
+  margin-top:13px;
+  font-size:.75rem;
+  color:var(--gold);
+  font-weight:850;
+}
+
+.btn{
+  display:inline-block;
+  margin-top:11px;
+  padding:8px 12px;
+  border-radius:11px;
+  background:
+    linear-gradient(
+      #ff4d28,
+      #a70f0b
+    );
+  color:#fff;
+  text-decoration:none;
+  font-size:.69rem;
+  font-weight:950;
+  box-shadow:0 5px 0 #6f1115;
+
+  transition:
+    transform .2s ease,
+    filter .2s ease,
+    box-shadow .2s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.12);
+
+  box-shadow:
+    0 7px 0 #6f1115,
+    0 0 18px rgba(255,65,40,.28);
+}
+
+/* =========================
+   MEMBER ROWS
+========================= */
+
+.rows{
+  position:relative;
+  z-index:2;
+}
+
+.row{
+  display:grid;
+  grid-template-columns:42px 1fr auto;
+  gap:10px;
+  align-items:center;
+  padding:9px 6px;
+}
+
+.row + .row{
+  border-top:1px solid rgba(255,255,255,.06);
+}
+
+.avatar{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#120505;
+  border:2px solid rgba(244,185,66,.3);
+}
+
+.ghost{
+  display:grid;
+  place-items:center;
+  font-size:1.05rem;
+}
+
+.row b{
+  display:block;
+  font-size:.78rem;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.row small{
+  display:block;
+  color:var(--muted);
+  font-size:.61rem;
+  margin-top:1px;
+}
+
+.row strong{
+  font-size:.76rem;
+  color:var(--gold);
+}
+
+/* =========================
+   FRESH SOULS
+========================= */
+
+.fresh{
+  padding:15px;
+  min-height:270px;
+}
+
+/* =========================
+   INFERNAL ASCENT
+========================= */
+
+.climbers{
+  padding:18px 8px 12px;
+}
+
+.podium{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  align-items:end;
+  position:relative;
+  z-index:2;
+  padding-top:14px;
+}
+
+.climber{
+  text-align:center;
+  border-radius:16px;
+  padding:12px 4px;
+  background:#160706;
+  border:1px solid rgba(255,255,255,.07);
+  min-width:0;
+
+  transition:
+    transform .2s ease,
+    border-color .2s ease;
+}
+
+.climber:hover{
+  transform:translateY(-3px);
+  border-color:rgba(225,43,32,.35);
+}
+
+.climber.first{
+  padding-top:19px;
+  box-shadow:
+    inset 0 -4px 0 var(--gold);
+}
+
+.climber.second{
+  box-shadow:
+    inset 0 -4px 0 #a9b0b7;
+}
+
+.climber.third{
+  box-shadow:
+    inset 0 -4px 0 #b77a49;
+}
+
+.place{
+  width:25px;
+  height:25px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  margin:-25px auto 6px;
+  background:var(--gold);
+  color:#15100a;
+  font-weight:950;
+  font-size:.7rem;
+}
+
+.climber .avatar{
+  width:52px;
+  height:52px;
+  margin:auto;
+}
+
+.climber b{
+  display:block;
+  margin-top:5px;
+  font-size:.65rem;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.gain{
+  font-size:1.12rem;
+  font-weight:950;
+  color:var(--green);
+  margin-top:6px;
+}
+
+.climber small{
+  font-size:.56rem;
+  color:var(--muted);
+}
+
+.note{
+  text-align:center;
+  color:#9e776d;
+  font-size:.59rem;
+  margin-top:9px;
+}
+
+/* =========================
+   DAILY MATCH CHAMPS
+========================= */
+
+.champs{
+  padding-top:34px;
+  min-height:250px;
+}
+
+.champ{
+  display:grid;
+  grid-template-columns:
+    27px
+    40px
+    1fr
+    auto;
+
+  gap:8px;
+  align-items:center;
+  padding:9px 3px;
+}
+
+.champ + .champ{
+  border-top:1px solid rgba(255,255,255,.06);
+}
+
+.rank{
+  width:27px;
+  height:27px;
+  border-radius:9px;
+  display:grid;
+  place-items:center;
+  color:#15100a;
+  font-weight:950;
+  background:var(--gold);
+  font-size:.7rem;
+}
+
+.champ:nth-child(2) .rank{
+  background:#b9bec4;
+}
+
+.champ:nth-child(3) .rank{
+  background:#bd7b49;
+}
+
+.champ .avatar{
+  width:39px;
+  height:39px;
+}
+
+.champ strong{
+  font-size:.7rem;
+  color:var(--gold);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  text-align:center;
+  padding:22px 10px 4px;
+  color:#9e776d;
+  font-size:.62rem;
+}
+
+.footer b{
+  color:var(--gold);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:340px){
+
+  .wrap{
+    padding-left:6px;
+    padding-right:6px;
+  }
+
+  .around.perch-right{
+    width:116px;
+    left:auto;
+    right:-80px;
+    top:20px;
+    transform:scaleX(-1);
+  }
+
+  .row{
+    grid-template-columns:
+      38px
+      1fr
+      auto;
+  }
+
+  .avatar{
+    width:38px;
+    height:38px;
+  }
+
+  .pointing{
+    width:135px;
+    right:-14px;
+  }
+
+  .podium{
+    gap:4px;
+  }
+}
+
+/* =========================
+   TOUCH DEVICES
+========================= */
+
+@media(hover:none){
+
+  .board:hover{
+    transform:none;
+    border-color:var(--line);
+
+    box-shadow:
+      inset 0 0 0 1px rgba(255,130,70,.08),
+      var(--board-glow);
+  }
+
+  .stat:hover{
+    transform:none;
+  }
+
+  .climber:hover{
+    transform:none;
+  }
+}
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  .board,
+  .stat,
+  .climber,
+  .btn{
+    transition:none;
+  }
+
+  .board:hover{
+    transform:none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap" id="top">
+<main class="shell">
+
+<!-- HEADER -->
+
+<header class="hero">
+
+  <div class="brand">
+    DEVIL'S <span>LAIR</span>
+  </div>
+
+  <div class="tag">
+    DAILY CHESS • EVERY MOVE COUNTS
+  </div>
+
+  <div class="sub">
+    A compact Daily-match command board powered by Chess.com data.
+  </div>
+
+</header>
+
+<!-- STATS -->
+
+<div class="stats">
+
+  <div class="stat">
+    <b id="members">—</b>
+    <small>MEMBERS</small>
+  </div>
+
+  <div class="stat">
+    <b id="openMatches">—</b>
+    <small>DAILY MATCHES</small>
+  </div>
+
+  <div class="stat">
+    <b id="updated">—</b>
+    <small>UPDATED</small>
+  </div>
+
+</div>
+
+<!-- DAILY BATTLE BOARD -->
+
+<section class="section">
+
+  <div class="head">
+    <h2>⚔️ Daily Battle Board</h2>
+  </div>
+
+  <div class="board match">
+
+    <div id="matchContent">
+
+      <span class="match-label">
+        DAILY TEAM CHESS
+      </span>
+
+      <h3>
+        Loading Devil's Lair matches…
+      </h3>
+
+      <div class="meta">
+
+        <span class="chip">
+          Chess.com
+        </span>
+
+        <span class="chip">
+          Daily
+        </span>
+
+      </div>
+
+      <div class="match-status">
+        Checking the battle board.
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FRESH SOULS -->
+
+<section class="section">
+
+  <div class="head">
+    <h2>🔥 Fresh Souls</h2>
+  </div>
+
+  <div class="board fresh">
+
+    <!--
+      CHARACTER IS OUTSIDE THE BOARD.
+      ONLY THE HAND AREA SHOULD REACH
+      THE RIGHT-HAND BORDER.
+    -->
+
+    <img
+      class="around perch-right"
+      src="assets/devil-around-board.png"
+      alt=""
+    >
+
+    <div
+      id="freshRows"
+      class="rows"
+    >
+
+      <div class="row">
+
+        <div class="avatar ghost">
+          ♟
+        </div>
+
+        <div>
+          <b>Loading members…</b>
+          <small>Please wait</small>
+        </div>
+
+        <strong>—</strong>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- INFERNAL ASCENT -->
+
+<section class="section">
+
+  <div class="head">
+    <h2>📈 Infernal Ascent</h2>
+  </div>
+
+  <div class="board climbers">
+
+    <div
+      id="climberRows"
+      class="podium"
+    >
+
+      <div class="climber second">
+
+        <span class="place">
+          2
+        </span>
+
+        <div class="avatar ghost">
+          ♟
+        </div>
+
+        <b>
+          Awaiting history
+        </b>
+
+        <div class="gain">
+          +—
+        </div>
+
+        <small>
+          Daily
+        </small>
+
+      </div>
+
+      <div class="climber first">
+
+        <span class="place">
+          1
+        </span>
+
+        <div class="avatar ghost">
+          ♛
+        </div>
+
+        <b>
+          Top climber
+        </b>
+
+        <div class="gain">
+          +—
+        </div>
+
+        <small>
+          Daily
+        </small>
+
+      </div>
+
+      <div class="climber third">
+
+        <span class="place">
+          3
+        </span>
+
+        <div class="avatar ghost">
+          ♟
+        </div>
+
+        <b>
+          Awaiting history
+        </b>
+
+        <div class="gain">
+          +—
+        </div>
+
+        <small>
+          Daily
+        </small>
+
+      </div>
+
+    </div>
+
+    <div
+      id="climberNote"
+      class="note"
+    >
+      Elo improvement appears after two rating snapshots.
+    </div>
+
+  </div>
+
+</section>
+
+<!-- DAILY MATCH CHAMPS -->
+
+<section class="section">
+
+  <div class="head">
+    <h2>🏆 Daily Match Champs</h2>
+  </div>
+
+  <div class="board champs">
+
+    <img
+      class="pointing"
+      src="assets/devil-pointing-winners.png"
+      alt=""
+    >
+
+    <div
+      id="champRows"
+      class="rows"
+    >
+
+      <div class="champ">
+
+        <span class="rank">
+          1
+        </span>
+
+        <div class="avatar ghost">
+          ♟
+        </div>
+
+        <div>
+          <b>Awaiting results</b>
+          <small>—</small>
+        </div>
+
+        <strong>
+          — pts
+        </strong>
+
+      </div>
+
+      <div class="champ">
+
+        <span class="rank">
+          2
+        </span>
+
+        <div class="avatar ghost">
+          ♟
+        </div>
+
+        <div>
+          <b>Awaiting results</b>
+          <small>—</small>
+        </div>
+
+        <strong>
+          — pts
+        </strong>
+
+      </div>
+
+      <div class="champ">
+
+        <span class="rank">
+          3
+        </span>
+
+        <div class="avatar ghost">
+          ♟
+        </div>
+
+        <div>
+          <b>Awaiting results</b>
+          <small>—</small>
+        </div>
+
+        <strong>
+          — pts
+        </strong>
+
+      </div>
+
+    </div>
+
+    <div
+      id="champNote"
+      class="note"
+    >
+      No completed Daily match results yet.
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+  <b>
+    DEVIL'S LAIR
+  </b>
+
+  <br>
+
+  Daily Chess • GitHub-hosted sidebar
+
+</footer>
+
+</main>
+</div>
+
+<script>
+
+/* =========================
+   CONFIG
+========================= */
+
+const API =
+  'https://api.chess.com/pub';
+
+const CLUB =
+  'devils-lair';
+
+const $ =
+  selector =>
+    document.querySelector(selector);
+
+const safe =
+  value =>
+    String(value ?? '')
+      .replace(
+        /[&<>'"]/g,
+        character => ({
+          '&':'&amp;',
+          '<':'&lt;',
+          '>':'&gt;',
+          "'":'&#39;',
+          '"':'&quot;'
+        }[character])
+      );
+
+const fallback =
+  'data:image/svg+xml;charset=UTF-8,' +
+  encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96">' +
+    '<rect width="96" height="96" rx="48" fill="#111922"/>' +
+    '<text x="48" y="63" text-anchor="middle" font-size="46" fill="#9aa5ae">♟</text>' +
+    '</svg>'
+  );
+
+/* =========================
+   FETCH
+========================= */
+
+async function get(url){
+
+  const controller =
+    new AbortController();
+
+  const timeout =
+    setTimeout(
+      () => controller.abort(),
+      8000
+    );
+
+  try{
+
+    const response =
+      await fetch(
+        url,
+        {
+          cache:'no-store',
+          signal:controller.signal
+        }
+      );
+
+    if(!response.ok){
+      throw Error(response.status);
+    }
+
+    return await response.json();
+
+  }
+
+  finally{
+    clearTimeout(timeout);
+  }
+}
+
+/* =========================
+   PLAYER DATA
+========================= */
+
+async function stats(username){
+
+  try{
+
+    return await get(
+      `${API}/player/${encodeURIComponent(username)}/stats`
+    );
+
+  }
+
+  catch{
+    return {};
+  }
+}
+
+async function profile(username){
+
+  try{
+
+    return await get(
+      `${API}/player/${encodeURIComponent(username)}`
+    );
+
+  }
+
+  catch{
+    return {username};
+  }
+}
+
+function daily(statsData){
+
+  return (
+    statsData
+      ?.chess_daily
+      ?.last
+      ?.rating
+      ?? null
+  );
+}
+
+/* =========================
+   FRESH SOULS
+========================= */
+
+async function loadMembers(){
+
+  try{
+
+    const data =
+      await get(
+        `${API}/club/${CLUB}/members`
+      );
+
+    const all = [
+      ...(data.weekly || []),
+      ...(data.monthly || []),
+      ...(data.all_time || [])
+    ];
+
+    const map =
+      new Map();
+
+    for(const member of all){
+
+      if(
+        !map.has(member.username)
+        ||
+        (+member.joined || 0)
+        >
+        (+map.get(member.username).joined || 0)
+      ){
+
+        map.set(
+          member.username,
+          member
+        );
+
+      }
+    }
+
+    const members =
+      [...map.values()];
+
+    $('#members').textContent =
+      members.length.toLocaleString();
+
+    const newest =
+      members
+        .sort(
+          (a,b) =>
+            (b.joined || 0)
+            -
+            (a.joined || 0)
+        )
+        .slice(0,3);
+
+    const entries =
+      await Promise.all(
+
+        newest.map(
+
+          async member => {
+
+            const [
+              playerProfile,
+              playerStats
+            ] =
+            await Promise.all([
+
+              profile(
+                member.username
+              ),
+
+              stats(
+                member.username
+              )
+
+            ]);
+
+            return {
+
+              username:
+                member.username,
+
+              image:
+                playerProfile.avatar
+                ||
+                fallback,
+
+              rating:
+                daily(
+                  playerStats
+                )
+
+            };
+
+          }
+
+        )
+
+      );
+
+    if(!entries.length){
+
+      $('#freshRows').innerHTML =
+        `
+        <div class="row">
+
+          <div class="avatar ghost">
+            ♟
+          </div>
+
+          <div>
+            <b>No members available</b>
+            <small>Try again later</small>
+          </div>
+
+          <strong>—</strong>
+
+        </div>
+        `;
+
+      return;
+    }
+
+    $('#freshRows').innerHTML =
+
+      entries
+
+        .map(
+
+          member =>
+            `
+            <div class="row">
+
+              <img
+                class="avatar"
+                src="${safe(member.image)}"
+                alt=""
+              >
+
+              <div>
+
+                <b>
+                  @${safe(member.username)}
+                </b>
+
+                <small>
+                  Daily rating
+                </small>
+
+              </div>
+
+              <strong>
+                ${member.rating ?? '—'}
+              </strong>
+
+            </div>
+            `
+
+        )
+
+        .join('');
+
+  }
+
+  catch(error){
+
+    console.warn(error);
+
+    $('#freshRows').innerHTML =
+      `
+      <div class="row">
+
+        <div class="avatar ghost">
+          ♟
+        </div>
+
+        <div>
+
+          <b>
+            Member data unavailable
+          </b>
+
+          <small>
+            Chess.com connection unavailable
+          </small>
+
+        </div>
+
+        <strong>
+          —
+        </strong>
+
+      </div>
+      `;
+  }
+}
+
+/* =========================
+   DAILY BATTLE BOARD
+========================= */
+
+async function loadMatches(){
+
+  try{
+
+    const data =
+      await get(
+        `${API}/club/${CLUB}/matches`
+      );
+
+    const matches = [
+      ...(data.in_progress || []),
+      ...(data.registered || [])
+    ];
+
+    $('#openMatches').textContent =
+      matches.length;
+
+    if(!matches.length){
+
+      $('#matchContent').innerHTML =
+        `
+        <span class="match-label">
+          DAILY TEAM CHESS
+        </span>
+
+        <h3>
+          No open Daily matches
+        </h3>
+
+        <div class="meta">
+
+          <span class="chip">
+            Stand by
+          </span>
+
+        </div>
+
+        <div class="match-status">
+          New matches will appear automatically.
+        </div>
+        `;
+
+      return;
+    }
+
+    const match =
+      matches[0];
+
+    const opponent =
+
+      typeof match.opponent === 'string'
+
+        ? match.opponent
+
+        : (
+            match.opponent?.name
+            ||
+            match.name
+            ||
+            'Opponent'
+          );
+
+    const inProgress =
+
+      (data.in_progress || [])
+
+        .some(
+          item =>
+            item.url === match.url
+        );
+
+    $('#matchContent').innerHTML =
+      `
+      <span class="match-label">
+
+        ${
+          inProgress
+            ?
+            'IN PROGRESS'
+            :
+            'REGISTRATION'
+        }
+
+      </span>
+
+      <h3>
+
+        Devil's Lair vs.
+        ${safe(opponent)}
+
+      </h3>
+
+      <div class="meta">
+
+        <span class="chip">
+          ${safe(match.time_control || 'Daily')}
+        </span>
+
+        <span class="chip">
+
+          ${
+            match.rated === false
+              ?
+              'Unrated'
+              :
+              'Rated'
+          }
+
+        </span>
+
+      </div>
+
+      <div class="match-status">
+
+        ${
+          safe(
+            match.name
+            ||
+            'Daily Team Match'
+          )
+        }
+
+      </div>
+
+      ${
+        match.url
+
+          ?
+
+          `
+          <a
+            class="btn"
+            href="${safe(match.url)}"
+            target="_blank"
+            rel="noopener"
+          >
+            VIEW MATCH
+          </a>
+          `
+
+          :
+
+          ''
+      }
+      `;
+
+  }
+
+  catch(error){
+
+    console.warn(error);
+
+    $('#openMatches').textContent =
+      '—';
+
+    $('#matchContent').innerHTML =
+      `
+      <span class="match-label">
+        DAILY TEAM CHESS
+      </span>
+
+      <h3>
+        Match data unavailable
+      </h3>
+
+      <div class="meta">
+
+        <span class="chip">
+          Chess.com
+        </span>
+
+      </div>
+      `;
+  }
+}
+
+/* =========================
+   INFERNAL ASCENT
+========================= */
+
+async function loadClimbers(){
+
+  try{
+
+    const history =
+      await get(
+        'data/rating-history.json'
+      );
+
+    const snapshots =
+      history.snapshots
+      ||
+      [];
+
+    if(snapshots.length < 2){
+      return;
+    }
+
+    const previous =
+      snapshots.at(-2);
+
+    const current =
+      snapshots.at(-1);
+
+    const gains =
+
+      Object.entries(
+        current.ratings || {}
+      )
+
+      .map(
+
+        ([username,newRating]) => ({
+
+          username,
+
+          newRating,
+
+          oldRating:
+            previous.ratings
+              ?.[username],
+
+          gain:
+
+            previous.ratings
+              ?.[username]
+              == null
+
+              ?
+
+              null
+
+              :
+
+              newRating
+              -
+              previous.ratings[username]
+
+        })
+
+      )
+
+      .filter(
+        player =>
+          player.gain != null
+      )
+
+      .sort(
+        (a,b) =>
+          b.gain
+          -
+          a.gain
+      )
+
+      .slice(
+        0,
+        3
+      );
+
+    const entries =
+      await Promise.all(
+
+        gains.map(
+
+          async player => ({
+
+            ...player,
+
+            profile:
+              await profile(
+                player.username
+              )
+
+          })
+
+        )
+
+      );
+
+    const order =
+      [1,0,2]
+        .filter(
+          index =>
+            entries[index]
+        );
+
+    $('#climberRows').innerHTML =
+
+      order
+
+      .map(
+
+        index => {
+
+          const player =
+            entries[index];
+
+          const className =
+
+            index === 0
+              ?
+              'first'
+
+              :
+
+            index === 1
+              ?
+              'second'
+
+              :
+
+              'third';
+
+          return `
+            <div class="climber ${className}">
+
+              <span class="place">
+                ${index + 1}
+              </span>
+
+              <img
+                class="avatar"
+                src="${
+                  safe(
+                    player.profile.avatar
+                    ||
+                    fallback
+                  )
+                }"
+                alt=""
+              >
+
+              <b>
+                @${safe(player.username)}
+              </b>
+
+              <div class="gain">
+
+                ${
+                  player.gain >= 0
+                    ?
+                    '+'
+                    :
+                    ''
+                }
+
+                ${player.gain}
+
+              </div>
+
+              <small>
+
+                ${player.oldRating}
+                →
+                ${player.newRating}
+
+              </small>
+
+            </div>
+          `;
+
+        }
+
+      )
+
+      .join('');
+
+    $('#climberNote').textContent =
+      `${previous.date} → ${current.date}`;
+
+  }
+
+  catch(error){
+    console.warn(error);
+  }
+}
+
+/* =========================
+   DAILY MATCH CHAMPS
+========================= */
+
+async function loadChamps(){
+
+  try{
+
+    const data =
+      await get(
+        'data/daily-champs.json'
+      );
+
+    const players =
+
+      (data.players || [])
+
+      .filter(
+        player =>
+          player.username
+      )
+
+      .slice(
+        0,
+        3
+      );
+
+    if(!players.length){
+
+      $('#champNote').textContent =
+        'No completed Daily match results yet.';
+
+      return;
+    }
+
+    const entries =
+      await Promise.all(
+
+        players.map(
+
+          async player => ({
+
+            ...player,
+
+            profile:
+              await profile(
+                player.username
+              )
+
+          })
+
+        )
+
+      );
+
+    $('#champRows').innerHTML =
+
+      entries
+
+      .map(
+
+        (player,index) =>
+          `
+          <div class="champ">
+
+            <span class="rank">
+              ${index + 1}
+            </span>
+
+            <img
+              class="avatar"
+              src="${
+                safe(
+                  player.profile.avatar
+                  ||
+                  fallback
+                )
+              }"
+              alt=""
+            >
+
+            <div>
+
+              <b>
+                @${safe(player.username)}
+              </b>
+
+              <small>
+
+                ${safe(player.wins ?? 0)}W
+                •
+                ${safe(player.draws ?? 0)}D
+                •
+                ${safe(player.losses ?? 0)}L
+
+              </small>
+
+            </div>
+
+            <strong>
+
+              ${safe(player.points)}
+              pts
+
+            </strong>
+
+          </div>
+          `
+
+      )
+
+      .join('');
+
+    const updated =
+
+      data.updated
+
+        ?
+
+        new Date(
+          data.updated
+        )
+
+        .toLocaleString(
+          [],
+          {
+            month:'short',
+            day:'numeric',
+            hour:'numeric',
+            minute:'2-digit'
+          }
+        )
+
+        :
+
+        'recently';
+
+    $('#champNote').textContent =
+      `Updated ${updated}`;
+
+  }
+
+  catch(error){
+
+    $('#champNote').textContent =
+      'Results temporarily unavailable.';
+
+  }
+}
+
+/* =========================
+   INITIALIZE
+========================= */
+
+$('#updated').textContent =
+
+  new Date()
+
+  .toLocaleTimeString(
+    [],
+    {
+      hour:'numeric',
+      minute:'2-digit'
+    }
+  );
+
+loadMembers();
+loadMatches();
+loadClimbers();
+loadChamps();
+
+</script>
+
+</body>
+</html>
