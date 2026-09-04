@@ -10,19 +10,14 @@
 <style>
 :root{
   --bg:#070202;
-  --shell:#120505;
   --card:#180706;
   --card2:#250b08;
-
   --gold:#d9a441;
   --red:#e12b20;
   --red-bright:#ff3b2e;
-  --ember:#ff5a24;
-
   --text:#fff4e8;
   --muted:#c9a99c;
   --green:#79c45a;
-
   --line:rgba(225,57,42,.88);
 
   --board-glow:
@@ -47,6 +42,8 @@ html{
 
 body{
   margin:0;
+  color:var(--text);
+
   background:
     radial-gradient(
       circle at 50% 0,
@@ -54,7 +51,7 @@ body{
       #0c0303 35%,
       #050101 78%
     );
-  color:var(--text);
+
   font-family:
     ui-rounded,
     "SF Pro Rounded",
@@ -72,43 +69,49 @@ body{
 .shell{
   background:transparent;
   border:0;
-  border-radius:0;
   box-shadow:none;
   overflow:visible;
   position:relative;
 }
 
 
-/* =========================================================
-   HERO
-   ========================================================= */
+/* ==============================
+   HEADER
+============================== */
 
 .hero{
   padding:22px 18px 20px;
   text-align:center;
-  border-bottom:1px solid rgba(225,43,32,.32);
+
+  border-bottom:
+    1px solid rgba(225,43,32,.32);
+
   position:relative;
   overflow:hidden;
 }
 
 .hero::before{
   content:"";
+
   position:absolute;
   inset:0;
+
   background:
     radial-gradient(
       circle at 50% -10%,
       rgba(255,72,31,.28),
       transparent 55%
     );
+
   pointer-events:none;
 }
 
 .brand{
+  position:relative;
+
   font-size:1.48rem;
   font-weight:950;
   letter-spacing:.02em;
-  position:relative;
 }
 
 .brand span{
@@ -116,41 +119,57 @@ body{
 }
 
 .tag{
+  position:relative;
+
+  margin-top:5px;
+
   font-size:.71rem;
   letter-spacing:.13em;
+
   color:var(--gold);
+
   font-weight:900;
-  margin-top:5px;
-  position:relative;
 }
 
 .sub{
+  position:relative;
+
   margin:8px auto 0;
+
   max-width:280px;
+
   color:var(--muted);
+
   font-size:.78rem;
   line-height:1.4;
-  position:relative;
 }
 
 
-/* =========================================================
-   TOP STATS
-   ========================================================= */
+/* ==============================
+   STATS
+============================== */
 
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
+
   gap:7px;
+
   padding:12px;
 }
 
 .stat{
   background:#160706;
-  border:1px solid rgba(217,164,65,.14);
+
+  border:
+    1px solid rgba(217,164,65,.14);
+
   border-radius:14px;
+
   padding:9px 5px;
+
   text-align:center;
+
   transition:
     transform .25s ease,
     border-color .25s ease,
@@ -159,7 +178,10 @@ body{
 
 .stat:hover{
   transform:translateY(-3px);
-  border-color:rgba(255,59,46,.55);
+
+  border-color:
+    rgba(255,59,46,.55);
+
   box-shadow:
     0 0 13px rgba(225,43,32,.22),
     0 8px 18px rgba(0,0,0,.42);
@@ -167,43 +189,54 @@ body{
 
 .stat b{
   display:block;
+
   font-size:1rem;
 }
 
 .stat small{
   font-size:.59rem;
+
   color:var(--muted);
 }
 
 
-/* =========================================================
+/* ==============================
    SECTIONS
-   ========================================================= */
+============================== */
 
 .section{
-  padding:18px 12px 0;
   position:relative;
+
+  padding:18px 12px 0;
 }
 
 .head{
-  padding:0 2px 10px;
   position:relative;
+
   z-index:8;
+
+  padding:0 2px 10px;
 }
 
 .head h2{
   margin:0;
+
   font-size:1.08rem;
+
   font-weight:950;
 }
 
 
-/* =========================================================
-   INFORMATION BOARDS
-   ========================================================= */
+/* ==============================
+   BOARDS
+============================== */
 
 .board{
   position:relative;
+
+  overflow:visible;
+
+  padding:15px;
 
   background:
     linear-gradient(
@@ -212,11 +245,10 @@ body{
       var(--card)
     );
 
-  border:2px solid var(--line);
-  border-radius:22px;
+  border:
+    2px solid var(--line);
 
-  padding:15px;
-  overflow:visible;
+  border-radius:22px;
 
   box-shadow:
     inset 0 0 0 1px rgba(255,130,70,.08),
@@ -228,17 +260,24 @@ body{
     border-color .28s ease;
 
   transform-origin:center;
+
   will-change:transform;
 }
 
-/* inner trim */
 .board::after{
   content:"";
+
   position:absolute;
+
   inset:7px;
-  border:1px solid rgba(255,255,255,.035);
+
+  border:
+    1px solid rgba(255,255,255,.035);
+
   border-radius:15px;
+
   pointer-events:none;
+
   z-index:0;
 
   transition:
@@ -246,13 +285,13 @@ body{
     box-shadow .28s ease;
 }
 
-/* red glow + pop outward */
 .board:hover{
   transform:
     translateY(-7px)
     scale(1.018);
 
-  border-color:rgba(255,74,55,.98);
+  border-color:
+    rgba(255,74,55,.98);
 
   box-shadow:
     inset 0 0 0 1px rgba(255,110,80,.16),
@@ -262,48 +301,58 @@ body{
 }
 
 .board:hover::after{
-  border-color:rgba(255,80,60,.12);
+  border-color:
+    rgba(255,80,60,.12);
+
   box-shadow:
     inset 0 0 15px rgba(255,50,35,.05);
 }
 
 
-/* =========================================================
+/* ==============================
    FRESH SOULS CHARACTER
-   ========================================================= */
+
+   MIRRORED + RIGHT SIDE
+============================== */
 
 .around{
   position:absolute;
+
   z-index:10;
+
   pointer-events:none;
+
+  transform-origin:center;
 
   filter:
     drop-shadow(
       0 9px 10px rgba(0,0,0,.72)
     );
-
-  transform-origin:center;
 }
 
-/*
-  IMPORTANT:
-  Character stays on RIGHT side of Fresh Souls.
-*/
 .around.perch-right{
   width:126px;
 
-  right:-26px;
+  right:-50px;
   left:auto;
 
-  top:-72px;
+  /*
+    Moves him DOWN the side
+    instead of sitting above
+    the board.
+  */
+  top:34px;
 
-  transform:none;
+  /*
+    Mirror flip.
+  */
+  transform:scaleX(-1);
 }
 
 
-/* =========================================================
-   WINNERS CHARACTER
-   ========================================================= */
+/* ==============================
+   DAILY MATCH CHAMPS CHARACTER
+============================== */
 
 .pointing{
   position:absolute;
@@ -324,12 +373,13 @@ body{
 }
 
 
-/* =========================================================
+/* ==============================
    DAILY BATTLE BOARD
-   ========================================================= */
+============================== */
 
 .match{
   padding:15px;
+
   min-height:190px;
 }
 
@@ -340,34 +390,45 @@ body{
 
   border-radius:999px;
 
-  background:rgba(229,57,53,.13);
-  border:1px solid rgba(229,57,53,.4);
+  background:
+    rgba(229,57,53,.13);
+
+  border:
+    1px solid rgba(229,57,53,.4);
 
   color:#ff8c86;
 
   font-size:.62rem;
+
   font-weight:950;
 }
 
 .match h3{
-  font-size:1rem;
   margin:13px 0 5px;
+
+  font-size:1rem;
 }
 
 .meta{
   display:flex;
+
   gap:6px;
+
   flex-wrap:wrap;
 }
 
 .chip{
   padding:4px 7px;
+
   border-radius:999px;
 
   background:#140706;
-  border:1px solid rgba(255,255,255,.08);
+
+  border:
+    1px solid rgba(255,255,255,.08);
 
   font-size:.61rem;
+
   color:#d5dde4;
 }
 
@@ -375,7 +436,9 @@ body{
   margin-top:13px;
 
   font-size:.75rem;
+
   color:var(--gold);
+
   font-weight:850;
 }
 
@@ -383,6 +446,7 @@ body{
   display:inline-block;
 
   margin-top:11px;
+
   padding:8px 12px;
 
   border-radius:11px;
@@ -394,9 +458,11 @@ body{
     );
 
   color:#fff;
+
   text-decoration:none;
 
   font-size:.69rem;
+
   font-weight:950;
 
   box-shadow:
@@ -409,9 +475,11 @@ body{
 }
 
 .btn:hover{
-  transform:translateY(-2px);
+  transform:
+    translateY(-2px);
 
-  filter:brightness(1.12);
+  filter:
+    brightness(1.12);
 
   box-shadow:
     0 7px 0 #6f1115,
@@ -419,12 +487,13 @@ body{
 }
 
 
-/* =========================================================
+/* ==============================
    MEMBER ROWS
-   ========================================================= */
+============================== */
 
 .rows{
   position:relative;
+
   z-index:2;
 }
 
@@ -464,6 +533,7 @@ body{
 
 .ghost{
   display:grid;
+
   place-items:center;
 
   font-size:1.05rem;
@@ -475,7 +545,9 @@ body{
   font-size:.78rem;
 
   white-space:nowrap;
+
   overflow:hidden;
+
   text-overflow:ellipsis;
 }
 
@@ -491,26 +563,31 @@ body{
 
 .row strong{
   font-size:.76rem;
+
   color:var(--gold);
 }
 
 
-/* =========================================================
-   FRESH SOULS
-   ========================================================= */
+/* ==============================
+   FRESH SOULS BOARD
+============================== */
 
 .fresh{
-  padding:50px 15px 15px;
+  padding:15px;
+
   min-height:270px;
 }
 
 
-/* =========================================================
+/* ==============================
    INFERNAL ASCENT
-   ========================================================= */
+============================== */
 
 .climbers{
-  padding:18px 8px 12px;
+  padding:
+    18px
+    8px
+    12px;
 }
 
 .podium{
@@ -524,6 +601,7 @@ body{
   align-items:end;
 
   position:relative;
+
   z-index:2;
 
   padding-top:14px;
@@ -549,7 +627,8 @@ body{
 }
 
 .climber:hover{
-  transform:translateY(-3px);
+  transform:
+    translateY(-3px);
 
   border-color:
     rgba(225,43,32,.35);
@@ -577,6 +656,7 @@ body{
   height:25px;
 
   display:grid;
+
   place-items:center;
 
   border-radius:50%;
@@ -586,10 +666,13 @@ body{
     auto
     6px;
 
-  background:var(--gold);
+  background:
+    var(--gold);
+
   color:#15100a;
 
   font-weight:950;
+
   font-size:.7rem;
 }
 
@@ -608,21 +691,25 @@ body{
   font-size:.65rem;
 
   overflow:hidden;
+
   text-overflow:ellipsis;
+
   white-space:nowrap;
 }
 
 .gain{
+  margin-top:6px;
+
   font-size:1.12rem;
+
   font-weight:950;
 
   color:var(--green);
-
-  margin-top:6px;
 }
 
 .climber small{
   font-size:.56rem;
+
   color:var(--muted);
 }
 
@@ -637,12 +724,13 @@ body{
 }
 
 
-/* =========================================================
+/* ==============================
    DAILY MATCH CHAMPS
-   ========================================================= */
+============================== */
 
 .champs{
   padding-top:34px;
+
   min-height:250px;
 }
 
@@ -674,12 +762,15 @@ body{
   border-radius:9px;
 
   display:grid;
+
   place-items:center;
 
   color:#15100a;
+
   font-weight:950;
 
-  background:var(--gold);
+  background:
+    var(--gold);
 
   font-size:.7rem;
 }
@@ -699,13 +790,14 @@ body{
 
 .champ strong{
   font-size:.7rem;
+
   color:var(--gold);
 }
 
 
-/* =========================================================
+/* ==============================
    FOOTER
-   ========================================================= */
+============================== */
 
 .footer{
   text-align:center;
@@ -725,9 +817,9 @@ body{
 }
 
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
+/* ==============================
+   SMALL MOBILE
+============================== */
 
 @media(max-width:340px){
 
@@ -737,16 +829,21 @@ body{
   }
 
   /*
-    Keep Fresh Souls character on RIGHT.
-    Previous code incorrectly moved him left here.
+    Fresh Souls character:
+    still mirrored and still
+    attached to RIGHT edge.
   */
+
   .around.perch-right{
     width:116px;
 
-    right:-18px;
+    right:-42px;
     left:auto;
 
-    top:-66px;
+    top:38px;
+
+    transform:
+      scaleX(-1);
   }
 
   .row{
@@ -763,28 +860,28 @@ body{
 
   .pointing{
     width:135px;
+
     right:-14px;
   }
 
   .podium{
     gap:4px;
   }
+
 }
 
 
-/* =========================================================
+/* ==============================
    TOUCH DEVICES
-
-   Avoid sticky hover scaling on phones/tablets.
-   Boards keep their normal red glow.
-   ========================================================= */
+============================== */
 
 @media(hover:none){
 
   .board:hover{
     transform:none;
 
-    border-color:var(--line);
+    border-color:
+      var(--line);
 
     box-shadow:
       inset 0 0 0 1px rgba(255,130,70,.08),
@@ -798,12 +895,13 @@ body{
   .climber:hover{
     transform:none;
   }
+
 }
 
 
-/* =========================================================
+/* ==============================
    REDUCED MOTION
-   ========================================================= */
+============================== */
 
 @media(prefers-reduced-motion:reduce){
 
@@ -817,6 +915,7 @@ body{
   .board:hover{
     transform:none;
   }
+
 }
 
 </style>
@@ -830,9 +929,7 @@ body{
 <main class="shell">
 
 
-<!-- =======================================================
-     HEADER
-     ======================================================= -->
+<!-- HEADER -->
 
 <header class="hero">
 
@@ -851,39 +948,63 @@ body{
 </header>
 
 
-<!-- =======================================================
-     STATS
-     ======================================================= -->
+<!-- STATS -->
 
 <div class="stats">
 
   <div class="stat">
-    <b id="members">—</b>
-    <small>MEMBERS</small>
+
+    <b id="members">
+      —
+    </b>
+
+    <small>
+      MEMBERS
+    </small>
+
   </div>
 
-  <div class="stat">
-    <b id="openMatches">—</b>
-    <small>DAILY MATCHES</small>
-  </div>
 
   <div class="stat">
-    <b id="updated">—</b>
-    <small>UPDATED</small>
+
+    <b id="openMatches">
+      —
+    </b>
+
+    <small>
+      DAILY MATCHES
+    </small>
+
+  </div>
+
+
+  <div class="stat">
+
+    <b id="updated">
+      —
+    </b>
+
+    <small>
+      UPDATED
+    </small>
+
   </div>
 
 </div>
 
 
-<!-- =======================================================
-     DAILY BATTLE BOARD
-     ======================================================= -->
+<!-- DAILY BATTLE BOARD -->
 
 <section class="section">
 
   <div class="head">
-    <h2>⚔️ Daily Battle Board</h2>
+
+    <h2>
+      ⚔️ Daily Battle Board
+    </h2>
+
   </div>
+
 
   <div class="board match">
 
@@ -893,9 +1014,11 @@ body{
         DAILY TEAM CHESS
       </span>
 
+
       <h3>
         Loading Devil's Lair matches…
       </h3>
+
 
       <div class="meta">
 
@@ -909,6 +1032,7 @@ body{
 
       </div>
 
+
       <div class="match-status">
         Checking the battle board.
       </div>
@@ -920,20 +1044,25 @@ body{
 </section>
 
 
-<!-- =======================================================
-     FRESH SOULS
-     ======================================================= -->
+<!-- FRESH SOULS -->
 
 <section class="section">
 
   <div class="head">
-    <h2>🔥 Fresh Souls</h2>
+
+    <h2>
+      🔥 Fresh Souls
+    </h2>
+
   </div>
+
 
   <div class="board fresh">
 
+
     <!--
-      Mascot positioned on the RIGHT side of this board.
+      MIRRORED CHARACTER
+      RIGHT SIDE OF BOARD
     -->
 
     <img
@@ -942,7 +1071,11 @@ body{
       alt=""
     >
 
-    <div id="freshRows" class="rows">
+
+    <div
+      id="freshRows"
+      class="rows"
+    >
 
       <div class="row">
 
@@ -950,12 +1083,23 @@ body{
           ♟
         </div>
 
+
         <div>
-          <b>Loading members…</b>
-          <small>Please wait</small>
+
+          <b>
+            Loading members…
+          </b>
+
+          <small>
+            Please wait
+          </small>
+
         </div>
 
-        <strong>—</strong>
+
+        <strong>
+          —
+        </strong>
 
       </div>
 
@@ -966,19 +1110,29 @@ body{
 </section>
 
 
-<!-- =======================================================
-     INFERNAL ASCENT
-     ======================================================= -->
+<!-- INFERNAL ASCENT -->
 
 <section class="section">
 
   <div class="head">
-    <h2>📈 Infernal Ascent</h2>
+
+    <h2>
+      📈 Infernal Ascent
+    </h2>
+
   </div>
+
 
   <div class="board climbers">
 
-    <div id="climberRows" class="podium">
+
+    <div
+      id="climberRows"
+      class="podium"
+    >
+
+
+      <!-- SECOND -->
 
       <div class="climber second">
 
@@ -986,17 +1140,21 @@ body{
           2
         </span>
 
+
         <div class="avatar ghost">
           ♟
         </div>
+
 
         <b>
           Awaiting history
         </b>
 
+
         <div class="gain">
           +—
         </div>
+
 
         <small>
           Daily
@@ -1004,6 +1162,8 @@ body{
 
       </div>
 
+
+      <!-- FIRST -->
 
       <div class="climber first">
 
@@ -1011,17 +1171,21 @@ body{
           1
         </span>
 
+
         <div class="avatar ghost">
           ♛
         </div>
+
 
         <b>
           Top climber
         </b>
 
+
         <div class="gain">
           +—
         </div>
+
 
         <small>
           Daily
@@ -1030,23 +1194,29 @@ body{
       </div>
 
 
+      <!-- THIRD -->
+
       <div class="climber third">
 
         <span class="place">
           3
         </span>
 
+
         <div class="avatar ghost">
           ♟
         </div>
+
 
         <b>
           Awaiting history
         </b>
 
+
         <div class="gain">
           +—
         </div>
+
 
         <small>
           Daily
@@ -1055,6 +1225,7 @@ body{
       </div>
 
     </div>
+
 
     <div
       id="climberNote"
@@ -1068,17 +1239,21 @@ body{
 </section>
 
 
-<!-- =======================================================
-     DAILY MATCH CHAMPS
-     ======================================================= -->
+<!-- DAILY MATCH CHAMPS -->
 
 <section class="section">
 
   <div class="head">
-    <h2>🏆 Daily Match Champs</h2>
+
+    <h2>
+      🏆 Daily Match Champs
+    </h2>
+
   </div>
 
+
   <div class="board champs">
+
 
     <img
       class="pointing"
@@ -1086,10 +1261,12 @@ body{
       alt=""
     >
 
+
     <div
       id="champRows"
       class="rows"
     >
+
 
       <div class="champ">
 
@@ -1097,14 +1274,24 @@ body{
           1
         </span>
 
+
         <div class="avatar ghost">
           ♟
         </div>
 
+
         <div>
-          <b>Awaiting results</b>
-          <small>—</small>
+
+          <b>
+            Awaiting results
+          </b>
+
+          <small>
+            —
+          </small>
+
         </div>
+
 
         <strong>
           — pts
@@ -1119,14 +1306,24 @@ body{
           2
         </span>
 
+
         <div class="avatar ghost">
           ♟
         </div>
 
+
         <div>
-          <b>Awaiting results</b>
-          <small>—</small>
+
+          <b>
+            Awaiting results
+          </b>
+
+          <small>
+            —
+          </small>
+
         </div>
+
 
         <strong>
           — pts
@@ -1141,14 +1338,24 @@ body{
           3
         </span>
 
+
         <div class="avatar ghost">
           ♟
         </div>
 
+
         <div>
-          <b>Awaiting results</b>
-          <small>—</small>
+
+          <b>
+            Awaiting results
+          </b>
+
+          <small>
+            —
+          </small>
+
         </div>
+
 
         <strong>
           — pts
@@ -1157,6 +1364,7 @@ body{
       </div>
 
     </div>
+
 
     <div
       id="champNote"
@@ -1170,9 +1378,7 @@ body{
 </section>
 
 
-<!-- =======================================================
-     FOOTER
-     ======================================================= -->
+<!-- FOOTER -->
 
 <footer class="footer">
 
@@ -1194,9 +1400,9 @@ body{
 
 <script>
 
-/* =========================================================
+/* ==============================
    CONFIG
-   ========================================================= */
+============================== */
 
 const API =
   'https://api.chess.com/pub';
@@ -1235,20 +1441,22 @@ const fallback =
   );
 
 
-/* =========================================================
+/* ==============================
    FETCH
-   ========================================================= */
+============================== */
 
 async function get(url){
 
   const controller =
     new AbortController();
 
+
   const timeout =
     setTimeout(
       () => controller.abort(),
       8000
     );
+
 
   try{
 
@@ -1261,13 +1469,20 @@ async function get(url){
         }
       );
 
+
     if(!response.ok){
-      throw Error(response.status);
+
+      throw Error(
+        response.status
+      );
+
     }
+
 
     return await response.json();
 
   }
+
   finally{
 
     clearTimeout(timeout);
@@ -1277,9 +1492,9 @@ async function get(url){
 }
 
 
-/* =========================================================
+/* ==============================
    PLAYER DATA
-   ========================================================= */
+============================== */
 
 async function stats(username){
 
@@ -1290,6 +1505,7 @@ async function stats(username){
     );
 
   }
+
   catch{
 
     return {};
@@ -1308,6 +1524,7 @@ async function profile(username){
     );
 
   }
+
   catch{
 
     return {
@@ -1332,9 +1549,9 @@ function daily(statsData){
 }
 
 
-/* =========================================================
+/* ==============================
    FRESH SOULS
-   ========================================================= */
+============================== */
 
 async function loadMembers(){
 
@@ -1347,9 +1564,13 @@ async function loadMembers(){
 
 
     const all = [
+
       ...(data.weekly || []),
+
       ...(data.monthly || []),
+
       ...(data.all_time || [])
+
     ];
 
 
@@ -1357,13 +1578,23 @@ async function loadMembers(){
       new Map();
 
 
-    for(const member of all){
+    for(
+      const member
+      of all
+    ){
 
       if(
-        !map.has(member.username)
+
+        !map.has(
+          member.username
+        )
+
         ||
-        (+member.joined || 0) >
+
+        (+member.joined || 0)
+        >
         (+map.get(member.username).joined || 0)
+
       ){
 
         map.set(
@@ -1381,17 +1612,24 @@ async function loadMembers(){
 
 
     $('#members').textContent =
-      members.length.toLocaleString();
+      members.length
+        .toLocaleString();
 
 
     const newest =
       members
+
         .sort(
           (a,b) =>
-            (b.joined || 0) -
+            (b.joined || 0)
+            -
             (a.joined || 0)
         )
-        .slice(0,3);
+
+        .slice(
+          0,
+          3
+        );
 
 
     const entries =
@@ -1406,8 +1644,15 @@ async function loadMembers(){
               playerStats
             ] =
             await Promise.all([
-              profile(member.username),
-              stats(member.username)
+
+              profile(
+                member.username
+              ),
+
+              stats(
+                member.username
+              )
+
             ]);
 
 
@@ -1418,10 +1663,13 @@ async function loadMembers(){
 
               image:
                 playerProfile.avatar
-                || fallback,
+                ||
+                fallback,
 
               rating:
-                daily(playerStats)
+                daily(
+                  playerStats
+                )
 
             };
 
@@ -1432,7 +1680,9 @@ async function loadMembers(){
       );
 
 
-    if(!entries.length){
+    if(
+      !entries.length
+    ){
 
       $('#freshRows').innerHTML =
         `
@@ -1442,15 +1692,27 @@ async function loadMembers(){
             ♟
           </div>
 
+
           <div>
-            <b>No members available</b>
-            <small>Try again later</small>
+
+            <b>
+              No members available
+            </b>
+
+            <small>
+              Try again later
+            </small>
+
           </div>
 
-          <strong>—</strong>
+
+          <strong>
+            —
+          </strong>
 
         </div>
         `;
+
 
       return;
 
@@ -1458,8 +1720,11 @@ async function loadMembers(){
 
 
     $('#freshRows').innerHTML =
+
       entries
+
         .map(
+
           member =>
             `
             <div class="row">
@@ -1469,6 +1734,7 @@ async function loadMembers(){
                 src="${safe(member.image)}"
                 alt=""
               >
+
 
               <div>
 
@@ -1482,19 +1748,26 @@ async function loadMembers(){
 
               </div>
 
+
               <strong>
                 ${member.rating ?? '—'}
               </strong>
 
             </div>
             `
+
         )
+
         .join('');
 
+
   }
+
   catch(error){
 
-    console.warn(error);
+    console.warn(
+      error
+    );
 
 
     $('#freshRows').innerHTML =
@@ -1504,6 +1777,7 @@ async function loadMembers(){
         <div class="avatar ghost">
           ♟
         </div>
+
 
         <div>
 
@@ -1517,6 +1791,7 @@ async function loadMembers(){
 
         </div>
 
+
         <strong>
           —
         </strong>
@@ -1529,9 +1804,9 @@ async function loadMembers(){
 }
 
 
-/* =========================================================
+/* ==============================
    DAILY BATTLE BOARD
-   ========================================================= */
+============================== */
 
 async function loadMatches(){
 
@@ -1544,8 +1819,11 @@ async function loadMatches(){
 
 
     const matches = [
+
       ...(data.in_progress || []),
+
       ...(data.registered || [])
+
     ];
 
 
@@ -1553,7 +1831,9 @@ async function loadMatches(){
       matches.length;
 
 
-    if(!matches.length){
+    if(
+      !matches.length
+    ){
 
       $('#matchContent').innerHTML =
         `
@@ -1561,9 +1841,11 @@ async function loadMatches(){
           DAILY TEAM CHESS
         </span>
 
+
         <h3>
           No open Daily matches
         </h3>
+
 
         <div class="meta">
 
@@ -1573,10 +1855,12 @@ async function loadMatches(){
 
         </div>
 
+
         <div class="match-status">
           New matches will appear automatically.
         </div>
         `;
+
 
       return;
 
@@ -1588,6 +1872,7 @@ async function loadMatches(){
 
 
     const opponent =
+
       typeof match.opponent === 'string'
 
         ? match.opponent
@@ -1602,7 +1887,9 @@ async function loadMatches(){
 
 
     const inProgress =
+
       (data.in_progress || [])
+
         .some(
           item =>
             item.url === match.url
@@ -1615,8 +1902,10 @@ async function loadMatches(){
 
         ${
           inProgress
-            ? 'IN PROGRESS'
-            : 'REGISTRATION'
+            ?
+            'IN PROGRESS'
+            :
+            'REGISTRATION'
         }
 
       </span>
@@ -1636,12 +1925,15 @@ async function loadMatches(){
           ${safe(match.time_control || 'Daily')}
         </span>
 
+
         <span class="chip">
 
           ${
             match.rated === false
-              ? 'Unrated'
-              : 'Rated'
+              ?
+              'Unrated'
+              :
+              'Rated'
           }
 
         </span>
@@ -1651,39 +1943,51 @@ async function loadMatches(){
 
       <div class="match-status">
 
-        ${safe(
-          match.name ||
-          'Daily Team Match'
-        )}
+        ${
+          safe(
+            match.name
+            ||
+            'Daily Team Match'
+          )
+        }
 
       </div>
 
 
       ${
         match.url
-        ?
-        `
-        <a
-          class="btn"
-          href="${safe(match.url)}"
-          target="_blank"
-          rel="noopener"
-        >
-          VIEW MATCH
-        </a>
-        `
-        :
-        ''
+
+          ?
+
+          `
+          <a
+            class="btn"
+            href="${safe(match.url)}"
+            target="_blank"
+            rel="noopener"
+          >
+            VIEW MATCH
+          </a>
+          `
+
+          :
+
+          ''
       }
       `;
 
   }
+
   catch(error){
 
-    console.warn(error);
+    console.warn(
+      error
+    );
+
 
     $('#openMatches').textContent =
       '—';
+
 
     $('#matchContent').innerHTML =
       `
@@ -1691,9 +1995,11 @@ async function loadMatches(){
         DAILY TEAM CHESS
       </span>
 
+
       <h3>
         Match data unavailable
       </h3>
+
 
       <div class="meta">
 
@@ -1709,9 +2015,9 @@ async function loadMatches(){
 }
 
 
-/* =========================================================
+/* ==============================
    INFERNAL ASCENT
-   ========================================================= */
+============================== */
 
 async function loadClimbers(){
 
@@ -1724,11 +2030,17 @@ async function loadClimbers(){
 
 
     const snapshots =
-      history.snapshots || [];
+      history.snapshots
+      ||
+      [];
 
 
-    if(snapshots.length < 2){
+    if(
+      snapshots.length < 2
+    ){
+
       return;
+
     }
 
 
@@ -1741,10 +2053,13 @@ async function loadClimbers(){
 
 
     const gains =
+
       Object.entries(
         current.ratings || {}
       )
+
       .map(
+
         ([username,newRating]) => ({
 
           username,
@@ -1756,24 +2071,41 @@ async function loadClimbers(){
               ?.[username],
 
           gain:
+
             previous.ratings
-              ?.[username] == null
-              ? null
-              : newRating -
-                previous.ratings[username]
+              ?.[username]
+              == null
+
+              ?
+
+              null
+
+              :
+
+              newRating
+              -
+              previous.ratings[username]
 
         })
+
       )
+
       .filter(
         player =>
           player.gain != null
       )
+
       .sort(
         (a,b) =>
-          b.gain -
+          b.gain
+          -
           a.gain
       )
-      .slice(0,3);
+
+      .slice(
+        0,
+        3
+      );
 
 
     const entries =
@@ -1798,97 +2130,122 @@ async function loadClimbers(){
 
 
     const order =
+
       [1,0,2]
-        .filter(
-          index =>
-            entries[index]
-        );
+
+      .filter(
+        index =>
+          entries[index]
+      );
 
 
     $('#climberRows').innerHTML =
+
       order
-        .map(
-          index => {
 
-            const player =
-              entries[index];
+      .map(
 
+        index => {
 
-            const className =
-              index === 0
-                ? 'first'
-                : index === 1
-                ? 'second'
-                : 'third';
+          const player =
+            entries[index];
 
 
-            return `
-              <div class="climber ${className}">
+          const className =
 
-                <span class="place">
-                  ${index + 1}
-                </span>
+            index === 0
+              ?
+              'first'
 
-                <img
-                  class="avatar"
-                  src="${
-                    safe(
-                      player.profile.avatar
-                      || fallback
-                    )
-                  }"
-                  alt=""
-                >
+              :
 
-                <b>
-                  @${safe(player.username)}
-                </b>
+            index === 1
+              ?
+              'second'
 
-                <div class="gain">
+              :
 
-                  ${
-                    player.gain >= 0
-                      ? '+'
-                      : ''
-                  }
+              'third';
 
-                  ${player.gain}
 
-                </div>
+          return `
+            <div class="climber ${className}">
 
-                <small>
+              <span class="place">
+                ${index + 1}
+              </span>
 
-                  ${player.oldRating}
-                  →
-                  ${player.newRating}
 
-                </small>
+              <img
+                class="avatar"
+                src="${
+                  safe(
+                    player.profile.avatar
+                    ||
+                    fallback
+                  )
+                }"
+                alt=""
+              >
+
+
+              <b>
+                @${safe(player.username)}
+              </b>
+
+
+              <div class="gain">
+
+                ${
+                  player.gain >= 0
+                    ?
+                    '+'
+                    :
+                    ''
+                }
+
+                ${player.gain}
 
               </div>
-            `;
 
-          }
 
-        )
-        .join('');
+              <small>
+
+                ${player.oldRating}
+                →
+                ${player.newRating}
+
+              </small>
+
+            </div>
+          `;
+
+        }
+
+      )
+
+      .join('');
 
 
     $('#climberNote').textContent =
       `${previous.date} → ${current.date}`;
 
   }
+
   catch(error){
 
-    console.warn(error);
+    console.warn(
+      error
+    );
 
   }
 
 }
 
 
-/* =========================================================
+/* ==============================
    DAILY MATCH CHAMPS
-   ========================================================= */
+============================== */
 
 async function loadChamps(){
 
@@ -1901,18 +2258,27 @@ async function loadChamps(){
 
 
     const players =
+
       (data.players || [])
-        .filter(
-          player =>
-            player.username
-        )
-        .slice(0,3);
+
+      .filter(
+        player =>
+          player.username
+      )
+
+      .slice(
+        0,
+        3
+      );
 
 
-    if(!players.length){
+    if(
+      !players.length
+    ){
 
       $('#champNote').textContent =
         'No completed Daily match results yet.';
+
 
       return;
 
@@ -1941,81 +2307,98 @@ async function loadChamps(){
 
 
     $('#champRows').innerHTML =
+
       entries
-        .map(
-          (player,index) =>
-            `
-            <div class="champ">
 
-              <span class="rank">
-                ${index + 1}
-              </span>
+      .map(
 
-              <img
-                class="avatar"
-                src="${
-                  safe(
-                    player.profile.avatar
-                    || fallback
-                  )
-                }"
-                alt=""
-              >
+        (player,index) =>
+          `
+          <div class="champ">
 
-              <div>
+            <span class="rank">
+              ${index + 1}
+            </span>
 
-                <b>
-                  @${safe(player.username)}
-                </b>
 
-                <small>
+            <img
+              class="avatar"
+              src="${
+                safe(
+                  player.profile.avatar
+                  ||
+                  fallback
+                )
+              }"
+              alt=""
+            >
 
-                  ${safe(player.wins ?? 0)}W
-                  •
-                  ${safe(player.draws ?? 0)}D
-                  •
-                  ${safe(player.losses ?? 0)}L
 
-                </small>
+            <div>
 
-              </div>
+              <b>
+                @${safe(player.username)}
+              </b>
 
-              <strong>
 
-                ${safe(player.points)}
-                pts
+              <small>
 
-              </strong>
+                ${safe(player.wins ?? 0)}W
+                •
+                ${safe(player.draws ?? 0)}D
+                •
+                ${safe(player.losses ?? 0)}L
+
+              </small>
 
             </div>
-            `
-        )
-        .join('');
+
+
+            <strong>
+
+              ${safe(player.points)}
+              pts
+
+            </strong>
+
+          </div>
+          `
+
+      )
+
+      .join('');
 
 
     const updated =
+
       data.updated
 
-        ? new Date(
-            data.updated
-          )
-          .toLocaleString(
-            [],
-            {
-              month:'short',
-              day:'numeric',
-              hour:'numeric',
-              minute:'2-digit'
-            }
-          )
+        ?
 
-        : 'recently';
+        new Date(
+          data.updated
+        )
+
+        .toLocaleString(
+          [],
+          {
+            month:'short',
+            day:'numeric',
+            hour:'numeric',
+            minute:'2-digit'
+          }
+        )
+
+        :
+
+        'recently';
 
 
     $('#champNote').textContent =
       `Updated ${updated}`;
 
   }
+
   catch(error){
 
     $('#champNote').textContent =
@@ -2026,24 +2409,29 @@ async function loadChamps(){
 }
 
 
-/* =========================================================
+/* ==============================
    INITIALIZE
-   ========================================================= */
+============================== */
 
 $('#updated').textContent =
+
   new Date()
-    .toLocaleTimeString(
-      [],
-      {
-        hour:'numeric',
-        minute:'2-digit'
-      }
-    );
+
+  .toLocaleTimeString(
+    [],
+    {
+      hour:'numeric',
+      minute:'2-digit'
+    }
+  );
 
 
 loadMembers();
+
 loadMatches();
+
 loadClimbers();
+
 loadChamps();
 
 </script>
